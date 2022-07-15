@@ -1,0 +1,41 @@
+exemplo
+<CobilasInputManager>
+	<UseSecondaryCommandKeys res="false"/>
+	<InputCapsule>
+		<InputName></InputName>
+		<InputID></InputID>
+		<InputType></InputType>
+		<InputMain>
+			<Input key="0" pressType="0"/>
+		</InputMain>
+		<--Se UseSecondaryCommandKeys for true-->
+		<SecondaryMain>
+			<Input key="0" pressType="0"/>
+		</SecondaryMain>
+	</InputCapsule>
+</CobilasInputManager>
+
+exemplo de inicialização
+<CobilasInputManagerConfig cimVersion="1.0">
+	<UseSecondaryCommandKeys res="false"/>
+	<InputCapsule>
+		<InputName></InputName>
+		<InputID></InputID>
+		<InputType></InputType>
+		<InputStatus Hidden="false" FixedInput="false">
+	</InputCapsule>
+</CobilasInputManagerConfig>
+
+exemplo de customização
+<CobilasInputManager cimVersion="1.0" type="default || custom || fixed">
+	<InputCapsule>
+		<InputID></InputID>
+		<InputMain>
+			<Input key="0" pressType="0"/>
+		</InputMain>
+		<!--Se UseSecondaryCommandKeys for true-->
+		<SecondaryMain>
+			<Input key="0" pressType="0"/>
+		</SecondaryMain>
+	</InputCapsule>
+</CobilasInputManager>

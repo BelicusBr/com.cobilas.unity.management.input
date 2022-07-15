@@ -1,0 +1,22 @@
+{
+    "name": "Cobilas.Unity.Management.Input",
+    "references": [
+        "Cobilas.Unity.Mono",
+        "Cobilas.Unity.Utility",
+        "Cobilas.Unity.Management.Build",
+        "Cobilas.Unity.Management.Runtime",
+        "Cobilas.Unity.Management.Resource"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Cobilas.Collections.dll",
+        "CobilasCore.Extension.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

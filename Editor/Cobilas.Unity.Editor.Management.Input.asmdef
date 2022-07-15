@@ -1,0 +1,25 @@
+{
+    "name": "Cobilas.Unity.Editor.Management.Input",
+    "references": [
+        "Cobilas.Unity.Utility",
+        "Cobilas.Unity.Editor.Utility",
+        "Cobilas.Unity.Management.Input",
+        "Cobilas.Unity.Management.Build"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Cobilas.Collections.dll",
+        "CobilasCore.Extension.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
