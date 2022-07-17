@@ -6,21 +6,49 @@
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "library",
-  "dependencies": {
-    "@belicusbr/com.cobilas.cobilascore": "1.0.0",
-    "@belicusbr/com.cobilas.unity.utility": "1.0.0",
-    "@belicusbr/com.cobilas.unity.management.runtime": "1.0.0",
-    "@belicusbr/com.cobilas.unity.management.resource": "1.0.0",
-    "@belicusbr/com.cobilas.unity.mono": "1.0.0",
-    "@belicusbr/com.cobilas.unity.editor.utility": "1.0.0"
+  
+  "author": {
+    "name": "Cobilas CTB"
   },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com/@BelicusBr"
+  
+  "gitDependencies": {
+    "com.cobilas.cobilascore": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	},
+    "com.cobilas.unity.utility": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	},
+    "com.cobilas.unity.management.runtime": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	},
+    "com.cobilas.unity.management.resource": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	},
+    "com.cobilas.unity.mono": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	},
+    "com.cobilas.unity.editor.utility": {
+		"type" : "github",
+		"version" : "1.0.0",
+		"userName" : "BelicusBr"
+	}
   },
+  
   "repository": {
     "url" : "https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "type" : "git"
   },
+  
   "relatedPackages": {
     "com.cobilas.unity.management.input": "1.0.0"
   }
