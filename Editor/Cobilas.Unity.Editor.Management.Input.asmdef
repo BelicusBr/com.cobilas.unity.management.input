@@ -20,6 +20,27 @@
     "defineConstraints": [
         "UNITY_EDITOR"
     ],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.cobilas.unity.utility",
+            "expression": "1.0",
+            "define": "COBILAS_UTILITY"
+        },
+        {
+            "name": "com.cobilas.unity.management.build",
+            "expression": "1.0",
+            "define": "COBILAS_EVENT_BUILD"
+        },
+        {
+            "name": "com.cobilas.unity.editor.utility",
+            "expression": "1.0",
+            "define": "COBILAS_EDITOR_UTILITY"
+        },
+        {
+            "name": "com.cobilas.cobilascore",
+            "expression": "1.0",
+            "define": "COBILAS_CORE"
+        }
+    ],
     "noEngineReferences": false
 }
