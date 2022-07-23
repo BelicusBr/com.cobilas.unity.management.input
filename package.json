@@ -1,8 +1,10 @@
 {
   "name": "com.cobilas.unity.management.input",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "displayName": "Cobilas Management Input",
   "description": "Pacote de gerenciamento de entradas para unity3d",
+  "licensesUrl": "https://github.com/BelicusBr/com.cobilas.unity.management.input/blob/main/LICENSE.md",
+  "changelogUrl": "https://github.com/BelicusBr/com.cobilas.unity.management.input/blob/main/CHANGELOG.md",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "library",
@@ -11,45 +13,12 @@
     "name": "Cobilas CTB"
   },
   
-  "gitDependencies": {
-    "com.cobilas.cobilascore": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	},
-    "com.cobilas.unity.utility": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	},
-    "com.cobilas.unity.management.runtime": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	},
-    "com.cobilas.unity.management.resource": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	},
-    "com.cobilas.unity.mono": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	},
-    "com.cobilas.unity.editor.utility": {
-		"type" : "github",
-		"version" : "1.0.0",
-		"userName" : "BelicusBr"
-	}
-  },
-  
   "repository": {
     "url" : "https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "type" : "git"
   },
   
   "relatedPackages": {
-    "com.cobilas.unity.management.input": "1.0.0"
+    "com.cobilas.unity.management.input": "1.0.4"
   }
 }
