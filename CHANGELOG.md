@@ -1,4 +1,10 @@
 # Changelog
+## [1.0.5] 25/07/2022
+- Add CHANGELOG.md
+- Fix package.json
+- Fix CobilasInputManagerWin.cs
+- > Á propriedade `private static string InputConfigsFolderPath { get; }` foi adicionado.
+- > No método `private static void Init();` foi adicionado uma verificação para determinar se o diretório "Resources/Inputs" existe, caso não será cirado.
 ## [1.0.4] 23/07/2022
 - Add CHANGELOG.md
 - Fix package.json

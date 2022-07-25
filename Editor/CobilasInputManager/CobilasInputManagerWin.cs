@@ -18,9 +18,10 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         [SerializeField] private bool UseSecondaryCommandKeys;
         [SerializeField] private InputCapsuleInfo[] capsulesClone;
 
-        private static string persistentInputManagerFolder => Path.Combine(Application.persistentDataPath, "Input manager");
-        private static string persistentInputManagerFile => Path.Combine(persistentInputManagerFolder, "List.cimtemp");
-        private static string InputConfigsPath => Path.Combine(CobilasPaths.ResourcesPath, $"Inputs/InputConfigs.xml");
+        private static string persistentInputManagerFolder => CobilasPaths.Combine(Application.persistentDataPath, "Input manager");
+        private static string persistentInputManagerFile => CobilasPaths.Combine(persistentInputManagerFolder, "List.cimtemp");
+        private static string InputConfigsFolderPath => CobilasPaths.Combine(CobilasPaths.ResourcesPath, "Inputs");
+        private static string InputConfigsPath => CobilasPaths.Combine(InputConfigsFolderPath, "InputConfigs.xml");
 
         [MenuItem("Window/Cobilas/Input manager")]
         private static void DoIt() {
@@ -42,6 +43,8 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 if (p == CobilasEditorProcessor.PriorityProcessor.High &&
                     pm == PlayModeStateChange.EnteredPlayMode &&
                     File.Exists(persistentInputManagerFile)) {
+                    if (!Directory.Exists(InputConfigsFolderPath))
+                        Directory.CreateDirectory(InputConfigsFolderPath);
                     File.Copy(persistentInputManagerFile, InputConfigsPath, true);
                     AssetDatabase.Refresh();
                 }
@@ -49,6 +52,8 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             CobilasBuildProcessor.EventOnPreprocessBuild += (p, b) => {
                 if (p == CobilasEditorProcessor.PriorityProcessor.High &&
                     File.Exists(persistentInputManagerFile)) {
+                    if (!Directory.Exists(InputConfigsFolderPath))
+                        Directory.CreateDirectory(InputConfigsFolderPath);
                     File.Copy(persistentInputManagerFile, InputConfigsPath, true);
                     AssetDatabase.Refresh();
                 }
