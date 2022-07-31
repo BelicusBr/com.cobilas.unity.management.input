@@ -7,6 +7,8 @@ using Cobilas.Collections;
 using Cobilas.Unity.Utility;
 using Cobilas.Unity.Editor.Utility;
 using Cobilas.Unity.Management.Build;
+using Cobilas.Unity.Management.Resources;
+using Cobilas.Unity.Management.RuntimeInitialize;
 using CobilasInputManagerClass = Cobilas.Unity.Management.InputManager.CobilasInputManager;
 
 namespace Cobilas.Unity.Editor.Management.InputManager {
@@ -43,21 +45,23 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 if (p == CobilasEditorProcessor.PriorityProcessor.High &&
                     pm == PlayModeStateChange.EnteredPlayMode &&
                     File.Exists(persistentInputManagerFile)) {
-                    if (!Directory.Exists(InputConfigsFolderPath))
-                        Directory.CreateDirectory(InputConfigsFolderPath);
-                    File.Copy(persistentInputManagerFile, InputConfigsPath, true);
-                    AssetDatabase.Refresh();
+                    LoadInputConfig();
                 }
             };
             CobilasBuildProcessor.EventOnPreprocessBuild += (p, b) => {
                 if (p == CobilasEditorProcessor.PriorityProcessor.High &&
                     File.Exists(persistentInputManagerFile)) {
-                    if (!Directory.Exists(InputConfigsFolderPath))
-                        Directory.CreateDirectory(InputConfigsFolderPath);
-                    File.Copy(persistentInputManagerFile, InputConfigsPath, true);
-                    AssetDatabase.Refresh();
+                    LoadInputConfig();
                 }
             };
+        }
+
+        [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.BeforeSceneLoad)]
+        private static void LoadInputConfig() {
+            if (!Directory.Exists(InputConfigsFolderPath))
+                Directory.CreateDirectory(InputConfigsFolderPath);
+            File.Copy(persistentInputManagerFile, InputConfigsPath, true);
+            AssetDatabase.Refresh();
         }
 
         private T[] SecureCloning<T>(T[] capsulesClone)

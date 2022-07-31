@@ -1,4 +1,8 @@
 # Changelog
+## [1.0.6] 31/07/2022
+- Add CHANGELOG.md
+- Fix package.json
+- Change CobilasInputManagerWin.cs
 ## [1.0.5] 25/07/2022
 - Add CHANGELOG.md
 - Fix package.json

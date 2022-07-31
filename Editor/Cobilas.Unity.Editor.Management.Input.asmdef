@@ -4,7 +4,9 @@
         "Cobilas.Unity.Utility",
         "Cobilas.Unity.Editor.Utility",
         "Cobilas.Unity.Management.Input",
-        "Cobilas.Unity.Management.Build"
+        "Cobilas.Unity.Management.Build",
+        "Cobilas.Unity.Management.Runtime",
+        "Cobilas.Unity.Management.Resource"
     ],
     "includePlatforms": [
         "Editor"
@@ -40,6 +42,16 @@
             "name": "com.cobilas.cobilascore",
             "expression": "1.0",
             "define": "COBILAS_CORE"
+        },
+        {
+            "name": "com.cobilas.unity.management.runtime",
+            "expression": "1.0",
+            "define": "COBILAS_MGT_RUNTIME"
+        },
+        {
+            "name": "com.cobilas.unity.management.resource",
+            "expression": "1.0",
+            "define": "COBILAS_MGT_RESOURCE"
         }
     ],
     "noEngineReferences": false
