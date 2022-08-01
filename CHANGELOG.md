@@ -1,4 +1,10 @@
 # Changelog
+## [1.0.7] 31/07/2022
+- Add CHANGELOG.md
+- Fix package.json
+- Add Cobilas MG Input.asset
+- Remove Runtime\DependencyWarning.cs
+- Remove Editor\DependencyWarning.cs
 ## [1.0.6] 31/07/2022
 - Add CHANGELOG.md
 - Fix package.json
