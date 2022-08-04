@@ -15,6 +15,9 @@
     "url": "https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "type": "git"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/@BelicusBr"
+  },
   "relatedPackages": {
     "com.cobilas.unity.management.input": "1.0.7"
   }
