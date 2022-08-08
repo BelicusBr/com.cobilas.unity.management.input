@@ -12,7 +12,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
 
         public static InputCapsuleInfo[] AssembleInputCapsuleList(ElementTag tags, InputCapsuleInfo[] inputs) {
             tags.ForEach(new Action<ElementTag>((t) => {
-                switch (t.GetElementAttribute("flag").Name) {
+                switch (t.GetElementAttribute("flag").Value.ValueToString) {
                     case "init":
                         inputs = GetCIMInit(t);
                         break;

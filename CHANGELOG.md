@@ -1,4 +1,8 @@
 # Changelog
+## [1.0.8] 07/08/2022
+- Fix CHANGELOG.md
+- Fix package.json
+- Fix ConvertCobilasInputManagerEditor.cs
 ## [1.0.7] 31/07/2022
 - Add CHANGELOG.md
 - Fix package.json

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cobilas MG Input
   m_EditorClassIdentifier: 
   _URL: https://github.com/BelicusBr/com.cobilas.unity.management.input.git
-  branch: 1.0.7
+  branch: 1.0.8
   repos:
   - start: 1
     _URL: https://github.com/BelicusBr/com.cobilas.unity.utility.git
