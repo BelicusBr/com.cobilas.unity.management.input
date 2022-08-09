@@ -1,4 +1,13 @@
 # Changelog
+## [1.0.8] 09/08/2022
+- Change CHANGELOG.md
+- Change Editor\CobilasInputManager\CobilasInputManagerWin.cs
+- Add Editor\CobilasInputManager\GetKey.cs
+- Add Editor\CobilasInputManager\InputCapsuleObject.cs
+- Add Editor\CobilasInputManager\InputCapsuleObjectInspector.cs
+- Add Editor\CobilasInputManager\InputValueInfoList.cs
+- Fix Runtime\CobilasInputManager\ConvertCobilasInputManager.cs
+- Fix Editor\CobilasInputManager\ConvertCobilasInputManagerEditor.cs
 ## [1.0.8] 07/08/2022
 - Fix CHANGELOG.md
 - Fix package.json

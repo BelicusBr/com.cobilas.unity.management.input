@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NO_Code
+using System;
 using System.IO;
 using System.Xml;
 using UnityEditor;
@@ -244,3 +245,4 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         }
     }
 }
+#endif

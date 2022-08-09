@@ -25,7 +25,7 @@ using InputManagerType = CobilasInputManager.InputManagerType;
         public static InputCapsule[] AssembleInputCapsuleList(ElementTag tags, InputCapsule[] inputs, bool reset) {
 
             tags.ForEach(new Action<ElementTag>((t) => {
-                switch (t.GetElementAttribute("flag").Name) {
+                switch (t.GetElementAttribute("flag").Value.ValueToString) {
                     case "init" when !reset:
                         inputs = GetCIMInit(t);
                         break;

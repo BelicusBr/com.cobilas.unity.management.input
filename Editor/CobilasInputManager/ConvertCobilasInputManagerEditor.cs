@@ -52,7 +52,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                     case "UseSecondaryCommandKeys":
                         CobilasInputManager.UseSecondaryCommandKeys = t.GetElementAttribute("status").Value.ValueToBool;
                         break;
-                    case "InputCapsuleInfo":
+                    case "InputCapsule":
                         string InputName = "";
                         string InputID = "";
                         InputManagerType type = InputManagerType.MixedCommand;
@@ -138,7 +138,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 ));
 
             for (int I = 0; I < ArrayManipulation.ArrayLength(inputs); I++) {
-                tag.Add(new ElementTag("InputCapsuleInfo",
+                tag.Add(new ElementTag("InputCapsule",
                             new ElementTag("InputName", inputs[I].inputName),
                             new ElementTag("InputID", inputs[I].inputID),
                             new ElementTag("InputType", (int)inputs[I].inputType),
@@ -160,7 +160,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 if (((flag == cimFlag._default || flag == cimFlag._custom) && inputs[I].isFixedInput) ||
                     (flag == cimFlag._fixed && !inputs[I].isFixedInput)) continue;
 
-                tag.Add(tag = new ElementTag("InputCapsuleInfo"));
+                tag.Add(tag = new ElementTag("InputCapsule"));
                 tag.Add(new ElementTag("InputID", inputs[I].inputID));
                 if (inputs[I].InputMainCount > 0) {
                     tag.Add(tag = new ElementTag("InputMain"));

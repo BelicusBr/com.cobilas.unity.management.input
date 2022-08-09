@@ -10,7 +10,6 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         public KeyPressType pressType;
         public bool ReadKey;
 
-
         public InputValueInfo(KeyCode myKey, KeyPressType pressType, string displayName = "") {
             this.myKey = myKey;
             this.displayName = displayName.ToUpper();
