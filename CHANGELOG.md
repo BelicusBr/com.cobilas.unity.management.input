@@ -1,4 +1,27 @@
 # Changelog
+## [1.0.8] 11/08/2022
+- Change CHANGELOG.md
+- Change Editor\Cobilas.Unity.Editor.Management.Input.asmdef
+- Change Runtime\Cobilas.Unity.Management.Input.asmdef
+- Change Editor\CobilasInputManager\InputCapsuleObject.cs
+- Add Test\Editor\Cobilas.Unity.Editor.Test.Management.Input.asmdef
+- Add Test\Editor\CobilasInputManagerSettingsInspector.cs
+- Add Test\Editor\GetKey.cs
+- Add Test\Editor\InputCapsuleInspector.cs
+- Add Test\Editor\InputValueInfoList.cs
+- Add Test\Runtime\cim_TDS001.cs
+- Add Test\Runtime\CIMCICConvert.cs
+- Add Test\Runtime\CIMCICConvertException.cs
+- Add Test\Runtime\Cobilas.Unity.Test.Management.Input.asmdef
+- Add Test\Runtime\CobilasInputManager.cs
+- Add Test\Runtime\CobilasInputManagerSettings.cs
+- Add Test\Runtime\GetKeyInput.cs
+- Add Test\Runtime\InputCapsule.cs
+- Add Test\Runtime\InputCapsuleResult.cs
+- Add Test\Runtime\InputCapsuleTrigger.cs
+- Add Test\Runtime\InputCapsuleUtility.cs
+- Add Test\Runtime\InputManagerTypeEnum.cs
+- Add Test\Runtime\KeyPressTypeEnum.cs
 ## [1.0.8] 09/08/2022
 - Change CHANGELOG.md
 - Change Editor\CobilasInputManager\CobilasInputManagerWin.cs

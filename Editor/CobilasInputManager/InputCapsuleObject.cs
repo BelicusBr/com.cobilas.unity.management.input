@@ -22,7 +22,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         private static string InputConfigsFolderPath => CobilasPaths.Combine(CobilasPaths.ResourcesPath, "Inputs");
         private static string InputConfigsPath => CobilasPaths.Combine(InputConfigsFolderPath, "InputConfigs.xml");
 
-        [MenuItem(menuRefreshPath)]
+        //[MenuItem(menuRefreshPath)]
         private static void Refresh() {
             Debug.Log($"[Input Manager]Refresh input manager paths[{System.DateTime.Now}]");
             IEnumerator<InputCapsuleObject> enumerator = GetInputCapsuleObjectList();
@@ -63,7 +63,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 yield return AssetDatabase.LoadAssetAtPath<InputCapsuleObject>(AssetDatabase.GUIDToAssetPath(guis[I]));
         }
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         private static void Init() {
             CobilasInputManager.UseSecondaryCommandKeys = EditorPrefs.GetBool(menuPath, false);
             EditorApplication.delayCall += () => {
@@ -84,7 +84,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             };
         }
 
-        [MenuItem(menuPath)]
+        //[MenuItem(menuPath)]
         private static void ToggleAction()
             => PerformAction(!CobilasInputManager.UseSecondaryCommandKeys);
 
