@@ -1,11 +1,9 @@
 {
     "name": "Cobilas.Unity.Management.Input",
     "references": [
-        "Cobilas.Unity.Mono",
-        "Cobilas.Unity.Utility",
         "Cobilas.Unity.Management.Runtime",
         "Cobilas.Unity.Management.Resource",
-        "Cobilas.Unity.Editor.Management.Runtime"
+        "Cobilas.Unity.Utility"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
