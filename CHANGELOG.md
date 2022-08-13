@@ -1,4 +1,6 @@
 # Changelog
+## [1.0.8] 13/08/2022
+- Change Runtime\auxiliaries\InputCapsule.cs
 ## [1.0.8] 12/08/2022
 ### Change
 - Change Editor\Cobilas.Unity.Editor.Management.Input.asmdef

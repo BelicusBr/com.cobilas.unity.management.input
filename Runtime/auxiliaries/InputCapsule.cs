@@ -3,7 +3,7 @@ using UnityEngine;
 using Cobilas.Collections;
 
 namespace Cobilas.Unity.Management.InputManager {
-    [CreateAssetMenu(fileName = "new InputCapsule", menuName = "InputCapsule")]
+    [CreateAssetMenu(fileName = "new InputCapsule", menuName = "CobilasInputManager/Input Capsule")]
     public class InputCapsule : ScriptableObject, ISerializationCallbackReceiver {
         [SerializeField]
         private InputManagerType inputType;
