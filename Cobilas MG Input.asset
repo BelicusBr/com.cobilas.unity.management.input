@@ -13,20 +13,8 @@ MonoBehaviour:
   m_Name: Cobilas MG Input
   m_EditorClassIdentifier: 
   _URL: https://github.com/BelicusBr/com.cobilas.unity.management.input.git
-  branch: 1.0.7
+  branch: 1.0.8
   repos:
-  - start: 1
-    _URL: https://github.com/BelicusBr/com.cobilas.unity.utility.git
-    branch: 1.0.13
-  - start: 1
-    _URL: https://github.com/BelicusBr/com.cobilas.unity.management.build.git
-    branch: 1.0.5
-  - start: 1
-    _URL: https://github.com/BelicusBr/com.cobilas.unity.management.runtime.git
-    branch: 1.0.7
-  - start: 1
-    _URL: https://github.com/BelicusBr/com.cobilas.unity.management.resource.git
-    branch: 1.0.6
   - start: 1
     _URL: https://github.com/BelicusBr/com.cobilas.cobilascore.git
     branch: 1.0.31
@@ -37,5 +25,14 @@ MonoBehaviour:
     _URL: https://github.com/BelicusBr/com.cobilas.unity.gitpackage.git
     branch: 1.0.2
   - start: 1
+    _URL: https://github.com/BelicusBr/com.cobilas.unity.utility.git
+    branch: 1.0.14
+  - start: 1
+    _URL: https://github.com/BelicusBr/com.cobilas.unity.management.runtime.git
+    branch: 1.0.8
+  - start: 1
+    _URL: https://github.com/BelicusBr/com.cobilas.unity.management.resource.git
+    branch: 1.0.7
+  - start: 1
     _URL: https://github.com/BelicusBr/com.cobilas.unity.mono.git
-    branch: 1.0.6
+    branch: 1.0.7

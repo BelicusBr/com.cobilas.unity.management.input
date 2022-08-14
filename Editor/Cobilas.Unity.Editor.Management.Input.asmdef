@@ -1,12 +1,9 @@
 {
     "name": "Cobilas.Unity.Editor.Management.Input",
     "references": [
-        "Cobilas.Unity.Utility",
-        "Cobilas.Unity.Editor.Utility",
         "Cobilas.Unity.Management.Input",
-        "Cobilas.Unity.Management.Build",
-        "Cobilas.Unity.Management.Runtime",
-        "Cobilas.Unity.Management.Resource"
+        "Cobilas.Unity.Test.Management.Input",
+        "Cobilas.Unity.Editor.Extensions"
     ],
     "includePlatforms": [
         "Editor"
@@ -22,37 +19,6 @@
     "defineConstraints": [
         "UNITY_EDITOR"
     ],
-    "versionDefines": [
-        {
-            "name": "com.cobilas.unity.utility",
-            "expression": "1.0",
-            "define": "COBILAS_UTILITY"
-        },
-        {
-            "name": "com.cobilas.unity.management.build",
-            "expression": "1.0",
-            "define": "COBILAS_EVENT_BUILD"
-        },
-        {
-            "name": "com.cobilas.unity.editor.utility",
-            "expression": "1.0",
-            "define": "COBILAS_EDITOR_UTILITY"
-        },
-        {
-            "name": "com.cobilas.cobilascore",
-            "expression": "1.0",
-            "define": "COBILAS_CORE"
-        },
-        {
-            "name": "com.cobilas.unity.management.runtime",
-            "expression": "1.0",
-            "define": "COBILAS_MGT_RUNTIME"
-        },
-        {
-            "name": "com.cobilas.unity.management.resource",
-            "expression": "1.0",
-            "define": "COBILAS_MGT_RESOURCE"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }
