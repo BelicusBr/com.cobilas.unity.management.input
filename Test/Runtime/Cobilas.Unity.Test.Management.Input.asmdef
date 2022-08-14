@@ -9,7 +9,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "Cobilas.Collections.dll",
-        "CobilasCore.Extension.dll"
+        "CobilasCore.Extension.dll",
+        "CobilasCore.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

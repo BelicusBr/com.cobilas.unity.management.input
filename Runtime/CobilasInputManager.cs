@@ -6,10 +6,12 @@ using System.Collections;
 using Cobilas.Collections;
 using Cobilas.Unity.Utility;
 using System.Collections.Generic;
-using Cobilas.Unity.Management.Build;
 using Cobilas.Unity.Management.Resources;
 using Cobilas.Unity.Management.RuntimeInitialize;
 using Cobilas.Unity.Management.InputManager.ALFCIC;
+#if UNITY_EDITOR
+using Cobilas.Unity.Management.Build;
+#endif
 
 namespace Cobilas.Unity.Management.InputManager {
     public static class CobilasInputManager {
@@ -30,6 +32,7 @@ namespace Cobilas.Unity.Management.InputManager {
         public static string CustomInputCapsuleFile => CobilasPaths.Combine(CustomInputCapsuleFolder, "CustomInputCapsule.cimcic");
         public static string CustomInputCapsuleFolder => CobilasPaths.Combine(CobilasPaths.StreamingAssetsPath, "CIM_CustomInputCapsule");
 
+#if UNITY_EDITOR
         [InitializeOnLoadMethod]
         private static void InitEditor() {
             CobilasBuildProcessor.EventOnPreprocessBuild += (pp, br) => RefreshSettings();
@@ -41,9 +44,13 @@ namespace Cobilas.Unity.Management.InputManager {
                 ActionUseSecondaryCommandKeys(useSecondaryCommandKeys);
                 ActionUseUseMultipleKeys(useMultipleKeys);
             };
+            if (!EditorApplication.isPlaying) return;
+            RefreshSettings();
+            Init();
         }
 
         [MenuItem(menuRefreshSettings)]
+        [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.BeforeSceneLoad)]
         private static void RefreshSettings() {
             CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             if (scriptableObject == null) {
@@ -72,8 +79,10 @@ namespace Cobilas.Unity.Management.InputManager {
             EditorPrefs.SetBool(menuUseSecondaryCommandKeys, enabled);
             useSecondaryCommandKeys = enabled;
         }
-
         [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.AfterSceneLoad)]
+#else
+        [CRIOLM_BeforeSceneLoad]
+#endif
         private static void Init() {
             CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             useMultipleKeys = scriptableObject.UseMultipleKeys;
