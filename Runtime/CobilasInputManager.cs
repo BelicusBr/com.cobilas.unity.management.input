@@ -44,9 +44,12 @@ namespace Cobilas.Unity.Management.InputManager {
                 ActionUseSecondaryCommandKeys(useSecondaryCommandKeys);
                 ActionUseUseMultipleKeys(useMultipleKeys);
             };
-            if (!EditorApplication.isPlaying) return;
-            RefreshSettings();
-            Init();
+
+            CobilasCompilationPipeline.compilationFinished += (o) => {
+                if (!EditorApplication.isPlaying) return;
+                RefreshSettings();
+                Init();
+            };
         }
 
         [MenuItem(menuRefreshSettings)]
@@ -68,6 +71,14 @@ namespace Cobilas.Unity.Management.InputManager {
             Menu.SetChecked(menuUseMultipleKeys, enabled);
             EditorPrefs.SetBool(menuUseMultipleKeys, enabled);
             useMultipleKeys = enabled;
+
+            if (!useMultipleKeys)
+                for (int I = 0; I < InputCapsuleCount; I++) {
+                    inputCapsules[I].ClearEvent();
+                    inputCapsules[I].Editor_ResizeTriggerFirst(1);
+                    if (useSecondaryCommandKeys)
+                        inputCapsules[I].Editor_ResizeSecondaryTrigger(1);
+                }
         }
 
         [MenuItem(menuUseSecondaryCommandKeys)]
@@ -78,6 +89,12 @@ namespace Cobilas.Unity.Management.InputManager {
             Menu.SetChecked(menuUseSecondaryCommandKeys, enabled);
             EditorPrefs.SetBool(menuUseSecondaryCommandKeys, enabled);
             useSecondaryCommandKeys = enabled;
+            if (!useSecondaryCommandKeys)
+                for (int I = 0; I < InputCapsuleCount; I++) {
+                    inputCapsules[I].ClearEvent();
+                    inputCapsules[I].SetSecondaryTrigger((InputCapsuleTrigger[])null);
+                    inputCapsules[I].SetTriggerFirst(InputCapsule.CloneList(inputCapsules[I].TriggerFirst));
+                }
         }
         [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.AfterSceneLoad)]
 #else

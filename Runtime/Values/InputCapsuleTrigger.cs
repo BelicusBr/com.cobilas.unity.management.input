@@ -30,18 +30,21 @@ namespace Cobilas.Unity.Management.InputManager {
         internal void SetIsSecondaryTrigger(bool isSecondaryTrigger) => this.isSecondaryTrigger = isSecondaryTrigger;
 
         internal void SpecificButtonPressed(InputCapsuleResult result, KeyPressType type) {
-            switch (pressType) {
-                case KeyPressType.Press when type == KeyPressType.Press:
-                    GetKey(result);
+            switch (type) {
+                case KeyPressType.Press:
+                    if (pressType == KeyPressType.Press)
+                        GetKey(result);
                     break;
-                case KeyPressType.PressDown when type == KeyPressType.PressDown:
-                    GetKeyDown(result);
+                case KeyPressType.PressDown:
+                    if (pressType == KeyPressType.PressDown)
+                        GetKeyDown(result);
                     break;
-                case KeyPressType.PressUp when type == KeyPressType.PressUp:
-                    GetKeyUp(result);
+                case KeyPressType.PressUp:
+                    if (pressType == KeyPressType.PressUp)
+                        GetKeyUp(result);
                     break;
                 case KeyPressType.AnyPress:
-                    switch (type) {
+                    switch (pressType) {
                         case KeyPressType.Press:
                             GetKey(result);
                             return;

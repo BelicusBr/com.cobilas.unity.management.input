@@ -5,13 +5,19 @@ using Cobilas.Unity.Management.InputManager;
 
 namespace Cobilas.Unity.Editor.Management.InputManager {
     public class GetKey : EditorWindow {
-        private InputCapsuleTrigger input;
+        private int indexTarget;
+        private string guiTarget;
         private InputManagerType type;
-        
+        private InputCapsuleTrigger input;
+
+        public string GUITarget => guiTarget;
+        public int IndexTarget => indexTarget;
         public InputCapsuleTrigger Input => input;
         
-        public static GetKey Init(InputCapsuleTrigger input, InputManagerType type) {
+        public static GetKey Init(InputCapsuleTrigger input, int indexTarget, string guiTarget, InputManagerType type) {
             GetKey window = GetWindow<GetKey>();
+            window.guiTarget = guiTarget;
+            window.indexTarget = indexTarget;
             window.type = type;
             window.input = input;
             window.titleContent = new GUIContent("Get key");

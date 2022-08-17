@@ -1,0 +1,10 @@
+{
+    "name": "None",
+    "version": "1.0.0",
+    "repository": "",
+    "relatedPackages": [
+        "1.0.0"
+    ],
+    "gitDependencies": [],
+    "typeManifest": "GitManifest"
+}

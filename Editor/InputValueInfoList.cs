@@ -31,6 +31,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         private GUIContent GUIContentPressType;
         private InputCapsule target;
         private InputType Typetemp;
+        private string guiTarget;
         private static GetKey getKey;
 
         public InputValueInfoList(
@@ -38,6 +39,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
           GUIContent Header,
           InputCapsuleInspector.TitleProperty title,
           SerializedProperty property) {
+            guiTarget = Guid.NewGuid().ToString();
             GUIContentHeader = Header;
             this.serializedObject = serializedObject;
             reorderableList = new ReorderableList(serializedObject.serializedObject, property);
@@ -105,8 +107,8 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                 case InputManagerType.KeyboardCommand:
                     EditorGUI.BeginDisabledGroup(getKey != null);
                     if (GUI.Button(rect, inputCapsuleTrigger.MyKeyCode.ToString()))
-                        getKey = GetKey.Init(inputCapsuleTrigger, inputType);
-                    if (getKey != null) {
+                        getKey = GetKey.Init(inputCapsuleTrigger, index, guiTarget, inputType);
+                    if (getKey != null && getKey.GUITarget == guiTarget && getKey.IndexTarget == index) {
                         InputCapsuleTrigger input = getKey.Input;
                         if (inputCapsuleTrigger.MyKeyCode != input.MyKeyCode) {
                             inputCapsuleTriggerArray[index] = input;

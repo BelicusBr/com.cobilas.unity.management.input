@@ -24,6 +24,7 @@ namespace Cobilas.Unity.Management.InputManager {
         private InputCapsuleTrigger[] secondaryTrigger;
         private bool AfterDeserialize = false;
 
+        private event Action<InputCapsuleResult, KeyPressType> buttonPressed;
         private event Action<InputCapsuleResult, KeyPressType> specificButtonPressed;
 
         public string InputID => _ID;
@@ -42,12 +43,21 @@ namespace Cobilas.Unity.Management.InputManager {
             if (!AfterDeserialize)
                 return;
             AfterDeserialize = false;
-            specificButtonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
+            specificButtonPressed = buttonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
             PopEvent(triggerFirst, false);
             PopEvent(secondaryTrigger, true);
         }
-#endif
 
+        public void Editor_ResizeTriggerFirst(int size) {
+            Array.Resize(ref triggerFirst, size);
+            PopEvent(triggerFirst, false);
+        }
+
+        public void Editor_ResizeSecondaryTrigger(int size) {
+            Array.Resize(ref secondaryTrigger, size);
+            PopEvent(secondaryTrigger, true);
+        }
+#endif
         internal void SetInputManagerType(InputManagerType inputType) => this.inputType = inputType;
 
         internal void SetID(string ID) => this._ID = ID;
@@ -61,7 +71,7 @@ namespace Cobilas.Unity.Management.InputManager {
         internal void SetIsChange(bool isChange) => this.isChange = isChange;
 
         internal void ClearEvent() 
-            => specificButtonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
+            => specificButtonPressed = buttonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
 
         internal void SetTriggerFirst(InputCapsuleTrigger[] triggerFirst) {
             ArrayManipulation.ClearArraySafe<InputCapsuleTrigger>(ref this.triggerFirst);
@@ -77,18 +87,26 @@ namespace Cobilas.Unity.Management.InputManager {
             if (result.IDTarget != _ID || TriggerFirstCount == 0 || result.Result)
                 return;
 
-            if (specificButtonPressed != null)
-                specificButtonPressed?.Invoke(result, type);
+            specificButtonPressed?.Invoke(result, KeyPressType.AnyPress);
+            buttonPressed?.Invoke(result, type);
 
+                //Debug.Log($"[{displayName}:{_ID}]{result.Mark_TriggerFirst} == {TriggerFirstCount}");
             if (result.Mark_TriggerFirst == TriggerFirstCount ||
-                (result.Mark_SecondaryTrigger == SecondaryTriggerCount && CobilasInputManager.UseSecondaryCommandKeys && SecondaryTriggerCount > 0))
+                (result.Mark_SecondaryTrigger == SecondaryTriggerCount && CobilasInputManager.UseSecondaryCommandKeys && SecondaryTriggerCount > 0)) {
                 result.Confirm();
+            }
         }
 
         private void PopEvent(InputCapsuleTrigger[] triggers, bool secondaryTrigger) {
-            for (int index = 0; index < ArrayManipulation.ArrayLength(triggers); ++index) {
-                this.specificButtonPressed += triggers[index].SpecificButtonPressed;
-                triggers[index].SetIsSecondaryTrigger(secondaryTrigger);
+            if (!ArrayManipulation.EmpytArray(triggers)) {
+                //Debug.Log($"[{displayName}]Count:{triggers.Length}");
+                for (int index = 0; index < triggers.Length - 1; ++index) {
+                    this.specificButtonPressed += triggers[index].SpecificButtonPressed;
+                    triggers[index].SetIsSecondaryTrigger(secondaryTrigger);
+                    //Debug.Log($"[{displayName}][Index:{index}]Count:{triggers.Length - 1}");
+                }
+                this.buttonPressed += triggers[triggers.Length - 1].SpecificButtonPressed;
+                triggers[triggers.Length - 1].SetIsSecondaryTrigger(secondaryTrigger);
             }
         }
 
