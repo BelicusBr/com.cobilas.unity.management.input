@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using Cobilas.Collections;
 using UnityEditorInternal;
 using Cobilas.Unity.Management.InputManager;
 
@@ -23,7 +24,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             Mouse6 = 329 // 0x00000149
         }
 
-        private InputCapsuleInspector serializedObject;
+        private Action Repaint;
         private ReorderableList reorderableList;
         private GUIContent GUIContentHeader;
         private GUIContent GUIContentDisplayName;
@@ -35,23 +36,24 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         private static GetKey getKey;
 
         public InputValueInfoList(
-          InputCapsuleInspector serializedObject,
-          GUIContent Header,
-          InputCapsuleInspector.TitleProperty title,
-          SerializedProperty property) {
+            Action repaint,
+            GUIContent Header,
+            SerializedObject serializedObject,
+            SerializedProperty property) {
+            Repaint = repaint;
             guiTarget = Guid.NewGuid().ToString();
             GUIContentHeader = Header;
-            this.serializedObject = serializedObject;
-            reorderableList = new ReorderableList(serializedObject.serializedObject, property);
-            target = serializedObject.serializedObject.targetObject as InputCapsule;
-            SetTitle(title);
+            reorderableList = new ReorderableList(serializedObject, property);
+            target = serializedObject.targetObject as InputCapsule;
+            SetTitle();
             SetElementHeight();
             reorderableList.drawHeaderCallback = new ReorderableList.HeaderCallbackDelegate(DrawHeaderCallback);
             reorderableList.drawElementCallback = new ReorderableList.ElementCallbackDelegate(DrawElementCallback);
         }
 
         public void DrawList() {
-            if (!CobilasInputManager.UseMultipleKeys && reorderableList.serializedProperty.arraySize > 1 || target.InputType == InputManagerType.MouseCommand)
+            if ((!CobilasInputManager.UseMultipleKeys && reorderableList.serializedProperty.arraySize > 1) || 
+                (target.InputType == InputManagerType.MouseCommand && reorderableList.serializedProperty.arraySize > 1))
                 reorderableList.serializedProperty.arraySize = 1;
             SetElementHeight();
             reorderableList.DoLayoutList();
@@ -61,15 +63,15 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             GUIContentDisplayName = GUIContentHeader = GUIContentMyKey = GUIContentPressType = (GUIContent)null;
             target = (InputCapsule)null;
             reorderableList = (ReorderableList)null;
-            serializedObject = (InputCapsuleInspector)null;
+            Repaint = (Action)null;
             if (getKey != null)
                 getKey.Close();
         }
 
-        private void SetTitle(InputCapsuleInspector.TitleProperty title) {
-            GUIContentDisplayName = title.tt_DisplayName;
-            GUIContentMyKey = title.tt_MyKey;
-            GUIContentPressType = title.tt_PressType;
+        private void SetTitle() {
+            GUIContentDisplayName = TitleProperty.tt_DisplayName;
+            GUIContentMyKey = TitleProperty.tt_MyKey;
+            GUIContentPressType = TitleProperty.tt_PressType;
         }
 
         private void SetElementHeight() {
@@ -90,18 +92,16 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         private void DrawElementCallback(Rect rect, int index, bool isActive, bool isFocused) {
             InputManagerType inputType = target.InputType;
             InputCapsuleTrigger[] inputCapsuleTriggerArray = reorderableList.serializedProperty.GetValue<InputCapsuleTrigger[]>();
+            if (ArrayManipulation.EmpytArray(inputCapsuleTriggerArray)) return;
             InputCapsuleTrigger trigger = inputCapsuleTriggerArray[index];
             rect.height = EditorGUIUtility.singleLineHeight;
             EditorGUI.BeginDisabledGroup(true);
             EditorGUI.TextField(rect, GUIContentDisplayName, trigger.DisplayName);
             EditorGUI.EndDisabledGroup();
             rect.y += EditorGUIUtility.singleLineHeight + 2f;
-            EditorGUI.BeginChangeCheck();
+
             InputCapsuleTrigger inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(trigger, (KeyPressType)EditorGUI.EnumPopup(rect, GUIContentPressType, trigger.PressType));
-            if (EditorGUI.EndChangeCheck()) {
-                inputCapsuleTriggerArray[index] = inputCapsuleTrigger;
-                reorderableList.serializedProperty.SetValue(inputCapsuleTriggerArray);
-            }
+
             rect.y += EditorGUIUtility.singleLineHeight + 2f;
             switch (inputType) {
                 case InputManagerType.KeyboardCommand:
@@ -110,11 +110,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                         getKey = GetKey.Init(inputCapsuleTrigger, index, guiTarget, inputType);
                     if (getKey != null && getKey.GUITarget == guiTarget && getKey.IndexTarget == index) {
                         InputCapsuleTrigger input = getKey.Input;
-                        if (inputCapsuleTrigger.MyKeyCode != input.MyKeyCode) {
-                            inputCapsuleTriggerArray[index] = input;
-                            reorderableList.serializedProperty.SetValue(inputCapsuleTriggerArray);
-                        }
-                        serializedObject.Repaint();
+                        Repaint?.Invoke();
                     }
                     EditorGUI.EndDisabledGroup();
                     break;
@@ -125,9 +121,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                     if (!EditorGUI.EndChangeCheck())
                         break;
                     inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(inputCapsuleTrigger, (KeyCode)inputMouse);
-                    inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(inputCapsuleTrigger, inputCapsuleTrigger.MyKeyCode);
-                    inputCapsuleTriggerArray[index] = inputCapsuleTrigger;
-                    reorderableList.serializedProperty.SetValue(inputCapsuleTriggerArray);
+                    inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(inputCapsuleTrigger, InputCapsuleUtility.MouseButtonToDisplayName(inputCapsuleTrigger.MyKeyCode));
                     break;
                 case InputManagerType.MixedCommand:
                     Typetemp = (InputType)EditorGUI.EnumPopup(rect, Typetemp);
@@ -137,6 +131,8 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                     else
                         goto case InputManagerType.KeyboardCommand;
             }
+            inputCapsuleTriggerArray[index] = inputCapsuleTrigger;
+            reorderableList.serializedProperty.SetValue(inputCapsuleTriggerArray);
         }
     }
 }

@@ -45,11 +45,9 @@ namespace Cobilas.Unity.Management.InputManager {
                 ActionUseUseMultipleKeys(useMultipleKeys);
             };
 
-            CobilasCompilationPipeline.compilationFinished += (o) => {
-                if (!EditorApplication.isPlaying) return;
-                RefreshSettings();
-                Init();
-            };
+            if (!EditorApplication.isPlaying) return;
+            RefreshSettings();
+            Init();
         }
 
         [MenuItem(menuRefreshSettings)]
@@ -60,6 +58,7 @@ namespace Cobilas.Unity.Management.InputManager {
                 CobilasInputManagerSettings inputManagerSettings = CobilasInputManagerSettings.GetCobilasInputManagerSettings();
                 AssetDatabase.CreateAsset(inputManagerSettings, string.Format("Assets/Resources/Inputs/{0}.asset", inputManagerSettings.name));
             } else scriptableObject.SetSettings();
+            if (EditorApplication.isPlaying) return;
             AssetDatabase.Refresh();
         }
 
@@ -112,6 +111,10 @@ namespace Cobilas.Unity.Management.InputManager {
         public static void ResetInputs() {
             ArrayManipulation.ClearArraySafe<InputCapsule>(ref inputCapsules);
             inputCapsules = CobilasResources.GetAllSpecificObjectInFolder<InputCapsule>("Resources/Inputs");
+            InputCapsuleCollection[] collection = CobilasResources.GetAllSpecificObjectInFolder<InputCapsuleCollection>("Resources/Inputs");
+
+            for (int I = 0; I < ArrayManipulation.ArrayLength(collection); I++)
+                ArrayManipulation.Add(collection[I].Capsules, ref inputCapsules);
 
             for (int index = 0; index < InputCapsuleCount; ++index)
                 inputCapsules[index] = InputCapsule.CloneInputCapsule(inputCapsules[index]);

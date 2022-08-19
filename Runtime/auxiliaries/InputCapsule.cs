@@ -4,7 +4,7 @@ using Cobilas.Collections;
 
 namespace Cobilas.Unity.Management.InputManager {
     [CreateAssetMenu(fileName = "new InputCapsule", menuName = "CobilasInputManager/Input Capsule")]
-    public class InputCapsule : ScriptableObject, ISerializationCallbackReceiver {
+    public class InputCapsule : ScriptableObject {
         [SerializeField]
         private InputManagerType inputType;
         [SerializeField]
@@ -22,7 +22,6 @@ namespace Cobilas.Unity.Management.InputManager {
         private InputCapsuleTrigger[] triggerFirst;
         [SerializeField]
         private InputCapsuleTrigger[] secondaryTrigger;
-        private bool AfterDeserialize = false;
 
         private event Action<InputCapsuleResult, KeyPressType> buttonPressed;
         private event Action<InputCapsuleResult, KeyPressType> specificButtonPressed;
@@ -39,14 +38,6 @@ namespace Cobilas.Unity.Management.InputManager {
         public int SecondaryTriggerCount => ArrayManipulation.ArrayLength(secondaryTrigger);
 
 #if UNITY_EDITOR
-        private void OnEnable() {
-            if (!AfterDeserialize)
-                return;
-            AfterDeserialize = false;
-            specificButtonPressed = buttonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
-            PopEvent(triggerFirst, false);
-            PopEvent(secondaryTrigger, true);
-        }
 
         public void Editor_ResizeTriggerFirst(int size) {
             Array.Resize(ref triggerFirst, size);
@@ -90,7 +81,6 @@ namespace Cobilas.Unity.Management.InputManager {
             specificButtonPressed?.Invoke(result, KeyPressType.AnyPress);
             buttonPressed?.Invoke(result, type);
 
-                //Debug.Log($"[{displayName}:{_ID}]{result.Mark_TriggerFirst} == {TriggerFirstCount}");
             if (result.Mark_TriggerFirst == TriggerFirstCount ||
                 (result.Mark_SecondaryTrigger == SecondaryTriggerCount && CobilasInputManager.UseSecondaryCommandKeys && SecondaryTriggerCount > 0)) {
                 result.Confirm();
@@ -99,23 +89,30 @@ namespace Cobilas.Unity.Management.InputManager {
 
         private void PopEvent(InputCapsuleTrigger[] triggers, bool secondaryTrigger) {
             if (!ArrayManipulation.EmpytArray(triggers)) {
-                //Debug.Log($"[{displayName}]Count:{triggers.Length}");
                 for (int index = 0; index < triggers.Length - 1; ++index) {
                     this.specificButtonPressed += triggers[index].SpecificButtonPressed;
                     triggers[index].SetIsSecondaryTrigger(secondaryTrigger);
-                    //Debug.Log($"[{displayName}][Index:{index}]Count:{triggers.Length - 1}");
                 }
                 this.buttonPressed += triggers[triggers.Length - 1].SpecificButtonPressed;
                 triggers[triggers.Length - 1].SetIsSecondaryTrigger(secondaryTrigger);
             }
         }
 
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
-
-        void ISerializationCallbackReceiver.OnAfterDeserialize() => this.AfterDeserialize = true;
-
         public static InputCapsuleTrigger[] CloneList(InputCapsuleTrigger[] list) 
             => list == null ? (InputCapsuleTrigger[])(object)null : (InputCapsuleTrigger[])list.Clone();
+
+        internal static InputCapsule CloneInputCapsule(InputCapsuleJson inputCapsule) {
+            InputCapsule inputCapsule1 = new InputCapsule();
+            inputCapsule1.inputType = inputCapsule.inputType;
+            inputCapsule1._ID = inputCapsule._ID;
+            inputCapsule1.displayName = inputCapsule.displayName;
+            inputCapsule1.isHidden = inputCapsule.isHidden;
+            inputCapsule1.isFixedInput = inputCapsule.isFixedInput;
+            inputCapsule1.ClearEvent();
+            inputCapsule1.SetTriggerFirst(CloneList(inputCapsule.triggerFirst));
+            inputCapsule1.SetSecondaryTrigger(CloneList(inputCapsule.secondaryTrigger));
+            return inputCapsule1;
+        }
 
         internal static InputCapsule CloneInputCapsule(InputCapsule inputCapsule) {
             InputCapsule inputCapsule1 = new InputCapsule();
