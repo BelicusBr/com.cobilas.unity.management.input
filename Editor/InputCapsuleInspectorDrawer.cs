@@ -59,6 +59,10 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             p_inputID =
             p_isHidden =
             p_isFixedInput = null;
+            if (r_inputMain != null)
+                r_inputMain.Dispose();
+            if (r_secondaryInput != null)
+                r_secondaryInput.Dispose();
             r_inputMain =
             r_secondaryInput = null;
         }

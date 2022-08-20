@@ -1,4 +1,34 @@
 # Changelog
+## [1.1.10] 19/08/2022
+#### (Fix) InputCapsuleCollectionInspector.cs
+Avia o problema de persistência das lista de entrada dos elementos InputCapsule<br/>
+que fazia os valores não serem adicionados na lista pelo fato de que a class `InputCapsuleInspectorDrawer`<br/>
+era instanciado e depóis destruído dentro do metódo `InputCapsuleCollectionInspector.OnInspectorGUI()`,<br/>
+o que fazia com que a instâcia da classe `InputValueInfoList` criace um novo id e por consequência<br/>
+a instâcia de `GetKey` não funcinasse corretamente.
+## [1.1.9] 17/08/2022
+#### (Add) InputCapsuleCollection.cs
+Em vez de criar um unico objeto InputCapsule para criar uma entrada de teclado<br/>
+agora se pode criar uma coleção de InputCapsules por meio do `InputCapsuleCollection`.
+#### (Change) Runtime\auxiliaries\InputCapsule.cs
+Ágora com um objeto InputCapsule que possua multiplas teclas de entrado a última<br/>
+entrada será verificada nos metódos
+```c#
+	//class CobilasInputManager
+	bool ButtonPressed(string InputID);
+	bool ButtonPressedDown(string InputID);
+	bool ButtonPressedUp(string InputID);
+```
+enquanto as outras entradas seram verificadas como `KeyPressType.AnyPress`, apesar<br/>
+que o recomendado e usar `KeyPressType.Press`.
+#### (Fix) Lista primaria é secundaria recebendo o mesmo valor
+Avia o problema de que as duas lista de entrada receberem o mesmo valor por<br/>
+falta uma forma de identificação da duas lista.<br/>
+Isso foi resolvido criando dois parâmetros no metódo `GetKey:GetKey.Init(InputCapsuleTrigger, int, string, InputManagerType);`,<br/>
+os parâmetros `int indexTarget, string guiTarget`.<br/>
+O `indexTarget` é o indice do objeto `InputCapsuleTrigger` na lista.<br/>
+O `guiTarget` é o id gerado por meio do `System.Guid.NewGuid()` da classe `InputValueInfoList` que é<br/>
+gerada á cada nova instancia do objeto.
 ## [1.0.8] 13/08/2022
 - Change Runtime\auxiliaries\InputCapsule.cs
 ## [1.0.8] 12/08/2022

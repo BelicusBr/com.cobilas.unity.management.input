@@ -93,14 +93,14 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             InputManagerType inputType = target.InputType;
             InputCapsuleTrigger[] inputCapsuleTriggerArray = reorderableList.serializedProperty.GetValue<InputCapsuleTrigger[]>();
             if (ArrayManipulation.EmpytArray(inputCapsuleTriggerArray)) return;
-            InputCapsuleTrigger trigger = inputCapsuleTriggerArray[index];
+            InputCapsuleTrigger inputCapsuleTrigger = inputCapsuleTriggerArray[index];
             rect.height = EditorGUIUtility.singleLineHeight;
             EditorGUI.BeginDisabledGroup(true);
-            EditorGUI.TextField(rect, GUIContentDisplayName, trigger.DisplayName);
+            EditorGUI.TextField(rect, GUIContentDisplayName, inputCapsuleTrigger.DisplayName);
             EditorGUI.EndDisabledGroup();
             rect.y += EditorGUIUtility.singleLineHeight + 2f;
 
-            InputCapsuleTrigger inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(trigger, (KeyPressType)EditorGUI.EnumPopup(rect, GUIContentPressType, trigger.PressType));
+            inputCapsuleTrigger = InputCapsuleTrigger.Editor_ModInputCapsuleTrigger(inputCapsuleTrigger, (KeyPressType)EditorGUI.EnumPopup(rect, GUIContentPressType, inputCapsuleTrigger.PressType));
 
             rect.y += EditorGUIUtility.singleLineHeight + 2f;
             switch (inputType) {
@@ -109,7 +109,8 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
                     if (GUI.Button(rect, inputCapsuleTrigger.MyKeyCode.ToString()))
                         getKey = GetKey.Init(inputCapsuleTrigger, index, guiTarget, inputType);
                     if (getKey != null && getKey.GUITarget == guiTarget && getKey.IndexTarget == index) {
-                        InputCapsuleTrigger input = getKey.Input;
+                        inputCapsuleTrigger = getKey.Input;
+                        GUI.changed = true;
                         Repaint?.Invoke();
                     }
                     EditorGUI.EndDisabledGroup();

@@ -1,14 +1,16 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using Cobilas.Collections;
 using Cobilas.Unity.Management.InputManager;
 
 namespace Cobilas.Unity.Editor.Management.InputManager {
     [CustomEditor(typeof(InputCapsuleCollection))]
     public class InputCapsuleCollectionInspector : UnityEditor.Editor {
 
-        private SerializedProperty p_capsules;
+        private SerializedInputCapsule[] s_capsules;
         private SerializedProperty p_foldout_list;
+        private SerializedProperty p_capsules;
         private InputCapsule[] f_capsules;
         private string[] fs_capsules;
         private bool[] f_foldout_list;
@@ -23,7 +25,15 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             if (f_foldout_list == null) f_foldout_list = new bool[0];
 
             f_capsules = JsonToInputCapsule(fs_capsules);
+
+            s_capsules = new SerializedInputCapsule[f_capsules.Length];
+
+            for (int I = 0; I < s_capsules.Length; I++)
+                s_capsules[I] = new SerializedInputCapsule(Repaint, f_capsules[I]);
         }
+
+        private void OnDisable()
+            => DeserializeInputCapsuleList();
 
         private InputCapsule[] JsonToInputCapsule(string[] list) {
             InputCapsule[] res = new InputCapsule[list.Length];
@@ -55,14 +65,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             for (int I = 0; I < size; I++) {
                 EditorGUI.BeginChangeCheck();
                 if (f_foldout_list[I] = EditorGUILayout.Foldout(f_foldout_list[I], f_capsules[I].DisplayName)) {
-                    using (SerializedObject serialized = new SerializedObject(f_capsules[I])) {
-                        serialized.Update();
-                        using (InputCapsuleInspectorDrawer drawer = new InputCapsuleInspectorDrawer(Repaint, serialized)) {
-                            drawer.DrawProperties();
-                            drawer.DrawLists();
-                        }
-                        serialized.ApplyModifiedProperties();
-                    }
+                    s_capsules[I].OnGUI();
                 }
                 if (EditorGUI.EndChangeCheck()) {
                     p_capsules.SetValue(InputCapsuleToJson(f_capsules));
@@ -77,10 +80,14 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             size = size < 0 ? 0 : size;
             Array.Resize(ref f_capsules, size);
             Array.Resize(ref f_foldout_list, size);
+            DeserializeInputCapsuleList();
+            Array.Resize(ref s_capsules, size);
 
-            for (int I = 0; I < size; I++)
+            for (int I = 0; I < size; I++) {
                 if (f_capsules[I] == null)
-                    f_capsules[I] = CreateInstance<InputCapsule>();
+                    s_capsules[I] = new SerializedInputCapsule(Repaint, f_capsules[I] = CreateInstance<InputCapsule>());
+                else s_capsules[I] = new SerializedInputCapsule(Repaint, f_capsules[I]);
+            }
         }
 
         private void DrawStatus() {
@@ -92,6 +99,35 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
             EditorGUI.indentLevel++;
             EditorGUILayout.LabelField(TitleProperty.GetUseUseMultipleKeysValue());
             EditorGUI.indentLevel--;
+        }
+
+        private void DeserializeInputCapsuleList() {
+            for (int I = 0; I < ArrayManipulation.ArrayLength(s_capsules); I++)
+                s_capsules[I].Dispose();
+        }
+
+        private sealed class SerializedInputCapsule : IDisposable {
+            private SerializedObject serialized;
+            private InputCapsuleInspectorDrawer drawer;
+
+            public SerializedInputCapsule(Action repaint, InputCapsule capsule) {
+                serialized = new SerializedObject(capsule);
+                drawer = new InputCapsuleInspectorDrawer(repaint, serialized);
+            }
+
+            public void OnGUI() {
+                serialized.Update();
+                drawer.DrawProperties();
+                drawer.DrawLists();
+                serialized.ApplyModifiedProperties();
+            }
+
+            public void Dispose() {
+                serialized.Dispose();
+                serialized = null;
+                drawer.Dispose();
+                drawer = null;
+            }
         }
     }
 }
