@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mouse-Click
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 6cccab2dad3f06746a394b7926910b39,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[0]
+    value: '{"inputType":1,"displayName":"Mouse left down","_ID":"ID_MouseLeftDown","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":323,"pressType":1,"displayName":"Button
+      Left","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[1]
+    value: '{"inputType":1,"displayName":"Mouse right down","_ID":"ID_MouseRightDown","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":324,"pressType":1,"displayName":"Button
+      Right","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[2]
+    value: '{"inputType":1,"displayName":"Mouse mid down","_ID":"ID_MouseMidDown","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":325,"pressType":1,"displayName":"Button
+      Mid","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[3]
+    value: '{"inputType":1,"displayName":"Mouse left up","_ID":"ID_MouseLeftUp","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":323,"pressType":2,"displayName":"Button
+      Left","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[4]
+    value: '{"inputType":1,"displayName":"Mouse right up","_ID":"ID_MouseRightUp","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":324,"pressType":2,"displayName":"Button
+      Right","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[5]
+    value: '{"inputType":1,"displayName":"Mouse mid up","_ID":"ID_MouseMidUp","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":325,"pressType":2,"displayName":"Button
+      Mid","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[6]
+    value: '{"inputType":1,"displayName":"Mouse left","_ID":"ID_MouseLeftPress","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":323,"pressType":0,"displayName":"Button
+      Left","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[7]
+    value: '{"inputType":1,"displayName":"Mouse right","_ID":"ID_MouseRightPress","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":324,"pressType":0,"displayName":"Button
+      Right","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[8]
+    value: '{"inputType":1,"displayName":"Mouse mid","_ID":"ID_MouseMidPress","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":325,"pressType":0,"displayName":"Button
+      Mid","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[2]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[3]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[4]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[5]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[6]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[7]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[8]
+    value: 0
+    objectReference: {fileID: 0}

@@ -70,14 +70,9 @@ namespace Cobilas.Unity.Management.InputManager {
             Menu.SetChecked(menuUseMultipleKeys, enabled);
             EditorPrefs.SetBool(menuUseMultipleKeys, enabled);
             useMultipleKeys = enabled;
-
-            if (!useMultipleKeys)
-                for (int I = 0; I < InputCapsuleCount; I++) {
-                    inputCapsules[I].ClearEvent();
-                    inputCapsules[I].Editor_ResizeTriggerFirst(1);
-                    if (useSecondaryCommandKeys)
-                        inputCapsules[I].Editor_ResizeSecondaryTrigger(1);
-                }
+            if (!EditorApplication.isPlaying) return;
+            ResetInputs();
+            LoadInputCapsuleCustom();
         }
 
         [MenuItem(menuUseSecondaryCommandKeys)]
@@ -88,12 +83,9 @@ namespace Cobilas.Unity.Management.InputManager {
             Menu.SetChecked(menuUseSecondaryCommandKeys, enabled);
             EditorPrefs.SetBool(menuUseSecondaryCommandKeys, enabled);
             useSecondaryCommandKeys = enabled;
-            if (!useSecondaryCommandKeys)
-                for (int I = 0; I < InputCapsuleCount; I++) {
-                    inputCapsules[I].ClearEvent();
-                    inputCapsules[I].SetSecondaryTrigger((InputCapsuleTrigger[])null);
-                    inputCapsules[I].SetTriggerFirst(InputCapsule.CloneList(inputCapsules[I].TriggerFirst));
-                }
+            if (!EditorApplication.isPlaying) return;
+            ResetInputs();
+            LoadInputCapsuleCustom();
         }
         [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.AfterSceneLoad)]
 #else
@@ -104,6 +96,10 @@ namespace Cobilas.Unity.Management.InputManager {
             useMultipleKeys = scriptableObject.UseMultipleKeys;
             useSecondaryCommandKeys = scriptableObject.UseSecondaryCommandKeys;
             ResetInputs();
+            LoadInputCapsuleCustom();
+        }
+
+        private static void LoadInputCapsuleCustom() {
             if (File.Exists(CustomInputCapsuleFile))
                 CIMCICConvert.LoadInputCapsuleCustom(CustomInputCapsuleFile, inputCapsules);
         }
@@ -116,8 +112,28 @@ namespace Cobilas.Unity.Management.InputManager {
             for (int I = 0; I < ArrayManipulation.ArrayLength(collection); I++)
                 ArrayManipulation.Add(collection[I].Capsules, ref inputCapsules);
 
-            for (int index = 0; index < InputCapsuleCount; ++index)
+            for (int index = 0; index < InputCapsuleCount; ++index) {
                 inputCapsules[index] = InputCapsule.CloneInputCapsule(inputCapsules[index]);
+                inputCapsules[index].ClearEvent();
+                if (!useMultipleKeys) {
+                    if (inputCapsules[index].TriggerFirstCount > 0)
+                        inputCapsules[index].SetTriggerFirst(new InputCapsuleTrigger[] { inputCapsules[index].TriggerFirst[inputCapsules[index].TriggerFirstCount - 1] });
+                    if (!useSecondaryCommandKeys) {
+                        inputCapsules[index].SetSecondaryTrigger((InputCapsuleTrigger[])null);
+                    } else {
+                        if (inputCapsules[index].SecondaryTriggerCount > 0)
+                            inputCapsules[index].SetSecondaryTrigger(new InputCapsuleTrigger[] { inputCapsules[index].SecondaryTrigger[inputCapsules[index].SecondaryTriggerCount - 1] });
+                    }
+                } else {
+                    inputCapsules[index].SetTriggerFirst(InputCapsule.CloneList(inputCapsules[index].TriggerFirst));
+                    if (!useSecondaryCommandKeys) {
+                        inputCapsules[index].SetSecondaryTrigger((InputCapsuleTrigger[])null);
+                    } else {
+                        if (inputCapsules[index].SecondaryTriggerCount > 0)
+                            inputCapsules[index].SetSecondaryTrigger(InputCapsule.CloneList(inputCapsules[index].SecondaryTrigger));
+                    }
+                }
+            }
 
             specificButtonPressed = (Action<InputCapsuleResult, KeyPressType>)null;
             PopEvent(inputCapsules);

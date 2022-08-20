@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: '[Arrow]Key-Move'
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 6cccab2dad3f06746a394b7926910b39,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[0]
+    value: '{"inputType":0,"displayName":"Move down arrow","_ID":"ID_MoveDownArrow","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":274,"pressType":0,"displayName":"DownArrow","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[1]
+    value: '{"inputType":0,"displayName":"Move up arrow","_ID":"ID_MoveUpArrow","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":273,"pressType":0,"displayName":"UpArrow","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[2]
+    value: '{"inputType":0,"displayName":"Move left arrow","_ID":"ID_MoveLeftArrow","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":276,"pressType":0,"displayName":"LeftArrow","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: capsules.Array.data[3]
+    value: '{"inputType":0,"displayName":"Move right arrow","_ID":"ID_MoveRightArrow","isHidden":false,"isFixedInput":true,"isChange":false,"triggerFirst":[{"myKeyCode":275,"pressType":0,"displayName":"RightArrow","isSecondaryTrigger":false}],"secondaryTrigger":[]}'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[2]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: foldout_list.Array.data[3]
+    value: 0
+    objectReference: {fileID: 0}

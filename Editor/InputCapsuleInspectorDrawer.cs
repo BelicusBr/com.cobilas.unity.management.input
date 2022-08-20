@@ -49,8 +49,9 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
 
         public void DrawLists() {
             r_inputMain.DrawList();
-            if (CobilasInputManager.UseSecondaryCommandKeys)
-                r_secondaryInput.DrawList();
+            EditorGUI.BeginDisabledGroup(!CobilasInputManager.UseSecondaryCommandKeys);
+            r_secondaryInput.DrawList();
+            EditorGUI.EndDisabledGroup();
         }
 
         public void Dispose() {

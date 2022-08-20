@@ -1,5 +1,7 @@
 # Changelog
 ## [1.1.10] 19/08/2022
+#### (Add) Pre-Definições
+Agora `InputCapsuleCollection` possui pre-definições.
 #### (Fix) InputCapsuleCollectionInspector.cs
 Avia o problema de persistência das lista de entrada dos elementos InputCapsule<br/>
 que fazia os valores não serem adicionados na lista pelo fato de que a class `InputCapsuleInspectorDrawer`<br/>

@@ -52,9 +52,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         }
 
         public void DrawList() {
-            if ((!CobilasInputManager.UseMultipleKeys && reorderableList.serializedProperty.arraySize > 1) || 
-                (target.InputType == InputManagerType.MouseCommand && reorderableList.serializedProperty.arraySize > 1))
-                reorderableList.serializedProperty.arraySize = 1;
+            reorderableList.displayAdd = CobilasInputManager.UseMultipleKeys || reorderableList.serializedProperty.arraySize == 0;
             SetElementHeight();
             reorderableList.DoLayoutList();
         }
