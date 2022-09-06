@@ -29,8 +29,8 @@ namespace Cobilas.Unity.Management.InputManager {
         public static bool UseSecondaryCommandKeys => useSecondaryCommandKeys;
         public static int InputCapsuleCount => ArrayManipulation.ArrayLength(inputCapsules);
         public static IEnumerable<InputCapsule> InputCapsules => new InputCapsuleList(inputCapsules);
-        public static string CustomInputCapsuleFile => CobilasPaths.Combine(CustomInputCapsuleFolder, "CustomInputCapsule.cimcic");
-        public static string CustomInputCapsuleFolder => CobilasPaths.Combine(CobilasPaths.StreamingAssetsPath, "CIM_CustomInputCapsule");
+        public static string CustomInputCapsuleFile => UnityPath.Combine(CustomInputCapsuleFolder, "CustomInputCapsule.cimcic");
+        public static string CustomInputCapsuleFolder => UnityPath.Combine(UnityPath.StreamingAssetsPath, "CIM_CustomInputCapsule");
 
 #if UNITY_EDITOR
         [InitializeOnLoadMethod]
