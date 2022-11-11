@@ -1,17 +1,14 @@
 {
     "name": "Cobilas.Unity.Test.Management.Input",
     "references": [
-        "Cobilas.Unity.Management.Input"
+        "Cobilas.Unity.Management.Input",
+        "Cobilas.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [
-        "Cobilas.Collections.dll",
-        "CobilasCore.Extension.dll",
-        "CobilasCore.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
