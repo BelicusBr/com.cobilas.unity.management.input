@@ -1,4 +1,7 @@
 # Changelog
+## [1.1.12] 17/11/2022
+#### Change
+O `CobilasInputManager` está usando o novo `StartMethodOnRun` para inicialização.
 ## [1.1.10] 19/08/2022
 #### (Add) Pre-Definições
 Agora `InputCapsuleCollection` possui pre-definições.

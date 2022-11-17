@@ -6,8 +6,8 @@ using System.Collections;
 using Cobilas.Collections;
 using Cobilas.Unity.Utility;
 using System.Collections.Generic;
+using Cobilas.Unity.Management.Runtime;
 using Cobilas.Unity.Management.Resources;
-using Cobilas.Unity.Management.RuntimeInitialize;
 using Cobilas.Unity.Management.InputManager.ALFCIC;
 #if UNITY_EDITOR
 using Cobilas.Unity.Management.Build;
@@ -51,7 +51,8 @@ namespace Cobilas.Unity.Management.InputManager {
         }
 
         [MenuItem(menuRefreshSettings)]
-        [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.BeforeSceneLoad)]
+        //[CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.BeforeSceneLoad)]
+        [CallWhenStart(InitializePriority.High, "#ResourceManager")]
         private static void RefreshSettings() {
             CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             if (scriptableObject == null) {
@@ -87,9 +88,11 @@ namespace Cobilas.Unity.Management.InputManager {
             ResetInputs();
             LoadInputCapsuleCustom();
         }
-        [CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.AfterSceneLoad)]
+        //[CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.AfterSceneLoad)]
+        [CallWhenStart(InitializePriority.Low, "#ResourceManager")]
 #else
-        [CRIOLM_BeforeSceneLoad]
+        //[CRIOLM_BeforeSceneLoad]
+        [StartBeforeSceneLoad(InitializePriority.Low)]
 #endif
         private static void Init() {
             CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
