@@ -3,22 +3,22 @@ using Cobilas.Unity.Management.InputManager;
 
 namespace Cobilas.Unity.Editor.Management.InputManager {
     public static class TitleProperty {
-        private static GUIContent mk_property;
-        private static GUIContent tt_inputType;
-        private static GUIContent tt_inputName;
-        private static GUIContent tt_inputID;
-        private static GUIContent tt_isHidden;
-        private static GUIContent tt_isFixedInput;
-        private static GUIContent tt_inputMain;
-        private static GUIContent tt_secondaryInput;
-        private static GUIContent tt_useSecondaryCommandKeys;
-        private static GUIContent tt_useUseMultipleKeys;
-        private static GUIContent tt_myKey;
-        private static GUIContent tt_displayName;
-        private static GUIContent tt_pressType;
+        private static readonly GUIContent mk_property;
+        private static readonly GUIContent tt_inputType;
+        private static readonly GUIContent tt_inputName;
+        private static readonly GUIContent tt_inputID;
+        private static readonly GUIContent tt_isHidden;
+        private static readonly GUIContent tt_isFixedInput;
+        private static readonly GUIContent tt_inputMain;
+        private static readonly GUIContent tt_secondaryInput;
+        private static readonly GUIContent tt_useSecondaryCommandKeys;
+        private static readonly GUIContent tt_useUseMultipleKeys;
+        private static readonly GUIContent tt_myKey;
+        private static readonly GUIContent tt_displayName;
+        private static readonly GUIContent tt_pressType;
         private const string txt_activated = "Activated";
         private const string txt_disabled = "Disabled";
-        private static GUIContent vv_useSecondaryCommandKeys;
+        private static readonly GUIContent vv_useSecondaryCommandKeys;
 
         public static GUIContent mk_Property => mk_property;
         public static GUIContent tt_InputType => tt_inputType;

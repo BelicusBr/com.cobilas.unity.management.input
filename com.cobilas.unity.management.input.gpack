@@ -1,11 +1,12 @@
 {
     "name": "com.cobilas.unity.management.input",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "repository": "https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "relatedPackages": [
         "1.1.10",
         "1.1.11",
-        "1.1.12"
+        "1.1.12",
+		"1.1.13"
     ],
     "gitDependencies": [
         {

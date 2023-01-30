@@ -4,7 +4,9 @@ using Cobilas.Unity.Management.InputManager;
 
 public class cmi_TDS001 : MonoBehaviour {
 
+#pragma warning disable IDE0052 // Remover membros particulares não lidos
     private Interrupter _interrupter;
+#pragma warning restore IDE0052 // Remover membros particulares não lidos
     public string txt;
 
     private void Start() {

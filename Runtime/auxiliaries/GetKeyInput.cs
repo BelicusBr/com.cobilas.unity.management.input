@@ -14,7 +14,6 @@ namespace Cobilas.Unity.Management.InputManager {
         [HideInInspector]
         private InputKeyResult[] triggers;
         private InputKeyResult resultTemp;
-        private Coroutine coroutine;
         private bool Change;
         private bool AfterDeserialize = false;
         private static GetKeyInput input;
@@ -22,7 +21,7 @@ namespace Cobilas.Unity.Management.InputManager {
         private void Awake() {
             if (input == null) {
                 input = this;
-                coroutine = StartCoroutine(ForEndOfFrame());
+                _ = StartCoroutine(ForEndOfFrame());
             } else if (input != this)
                 Destroy(this);
         }
@@ -31,7 +30,7 @@ namespace Cobilas.Unity.Management.InputManager {
         private void OnEnable() {
             if (!AfterDeserialize) return;
             AfterDeserialize = false;
-            coroutine = StartCoroutine(ForEndOfFrame());
+            _ = StartCoroutine(ForEndOfFrame());
         }
 #endif
 

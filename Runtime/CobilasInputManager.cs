@@ -19,7 +19,7 @@ namespace Cobilas.Unity.Management.InputManager {
         private static bool useMultipleKeys = false;
         private static bool buttonPressedDesactive = false;
         private static bool useSecondaryCommandKeys = false;
-        private static InputCapsuleResult Result = new InputCapsuleResult();
+        private static readonly InputCapsuleResult Result = new InputCapsuleResult();
         private static Action<InputCapsuleResult, KeyPressType> specificButtonPressed;
         private const string menuRefreshSettings = "Tools/Cobilas Input Manager/Refresh settings";
         private const string menuUseMultipleKeys = "Tools/Cobilas Input Manager/Use multiple keys";
@@ -189,7 +189,7 @@ namespace Cobilas.Unity.Management.InputManager {
         }
 
         public sealed class InputCapsuleList : IEnumerable<InputCapsule> {
-            private InputCapsule[] inputCapsulesList;
+            private readonly InputCapsule[] inputCapsulesList;
 
             internal InputCapsuleList(InputCapsule[] inputCapsules) 
                 => inputCapsulesList = inputCapsules;

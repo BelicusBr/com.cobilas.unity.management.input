@@ -1,4 +1,9 @@
 # Changelog
+## [1.1.13] - 30/01/2023
+### Changed
+- Romoção de campos não utilizados.
+- Remoção de atribuições desnecessárias.
+- Transformando possiveis campos em `readonly`.
 ## [1.1.12] 17/11/2022
 #### Change
 O `CobilasInputManager` está usando o novo `StartMethodOnRun` para inicialização.

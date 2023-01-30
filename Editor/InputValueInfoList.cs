@@ -32,7 +32,7 @@ namespace Cobilas.Unity.Editor.Management.InputManager {
         private GUIContent GUIContentPressType;
         private InputCapsule target;
         private InputType Typetemp;
-        private string guiTarget;
+        private readonly string guiTarget;
         private static GetKey getKey;
 
         public InputValueInfoList(
