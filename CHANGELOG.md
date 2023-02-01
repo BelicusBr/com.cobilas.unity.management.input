@@ -4,6 +4,8 @@
 - Romoção de campos não utilizados.
 - Remoção de atribuições desnecessárias.
 - Transformando possiveis campos em `readonly`.
+### Fixed
+- Antes de criar o objeto `CobilasInputManagerSettings` é verificádo se o diretório 'Assets/Resources/Inputs' existe.
 ## [1.1.12] 17/11/2022
 #### Change
 O `CobilasInputManager` está usando o novo `StartMethodOnRun` para inicialização.

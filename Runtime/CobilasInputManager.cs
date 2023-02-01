@@ -57,6 +57,11 @@ namespace Cobilas.Unity.Management.InputManager {
             CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             if (scriptableObject == null) {
                 CobilasInputManagerSettings inputManagerSettings = CobilasInputManagerSettings.GetCobilasInputManagerSettings();
+                string dirPath = UnityPath.Combine(UnityPath.AssetsPath, "Resources/Inputs");
+
+                if (!Directory.Exists(dirPath))
+                    Directory.CreateDirectory(dirPath);
+
                 AssetDatabase.CreateAsset(inputManagerSettings, string.Format("Assets/Resources/Inputs/{0}.asset", inputManagerSettings.name));
             } else scriptableObject.SetSettings();
             if (EditorApplication.isPlaying) return;
