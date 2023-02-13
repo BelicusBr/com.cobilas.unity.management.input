@@ -7,7 +7,7 @@
   "changelogUrl": "https://github.com/BelicusBr/com.cobilas.unity.management.input/blob/main/CHANGELOG.md",
   "unity": "2019.1",
   "unityRelease": "0b5",
-  "type": "cb-input",
+  "type": "tool",
   "author": {
     "name": "Cobilas CTB"
   },
@@ -16,6 +16,6 @@
     "type": "git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/@BelicusBr"
+    "registry": "https://npm.pkg.github.com/@BelicusBr"
   }
 }
