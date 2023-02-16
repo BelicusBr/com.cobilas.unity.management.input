@@ -8,14 +8,23 @@
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "tool",
-  "author": {
-    "name": "Cobilas CTB"
-  },
+  "author": "Cobilas CTB",
   "repository": {
-    "url": "https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
+    "url": "git+https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "type": "git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@BelicusBr"
-  }
+  "bugs": {
+    "url": "https://github.com/BelicusBr/com.cobilas.unity.management.input/issues"
+  },
+  "homepage": "https://github.com/BelicusBr/com.cobilas.unity.management.input#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "unity3d",
+    "C#",
+    "CSharp"
+  ],
+  "license": "MIT"
 }
