@@ -21,10 +21,11 @@ namespace Cobilas.Unity.Management.InputManager {
         private static bool useSecondaryCommandKeys = false;
         private static readonly InputCapsuleResult Result = new InputCapsuleResult();
         private static Action<InputCapsuleResult, KeyPressType> specificButtonPressed;
+#if UNITY_EDITOR
         private const string menuRefreshSettings = "Tools/Cobilas Input Manager/Refresh settings";
         private const string menuUseMultipleKeys = "Tools/Cobilas Input Manager/Use multiple keys";
         private const string menuUseSecondaryCommandKeys = "Tools/Cobilas Input Manager/Use secondary command keys";
-
+#endif
         public static bool UseMultipleKeys => useMultipleKeys;
         public static bool UseSecondaryCommandKeys => useSecondaryCommandKeys;
         public static int InputCapsuleCount => ArrayManipulation.ArrayLength(inputCapsules);

@@ -15,8 +15,10 @@ namespace Cobilas.Unity.Management.InputManager {
         private InputKeyResult[] triggers;
         private InputKeyResult resultTemp;
         private bool Change;
-        private bool AfterDeserialize = false;
         private static GetKeyInput input;
+#if UNITY_EDITOR
+        private bool AfterDeserialize = false;
+#endif
 
         private void Awake() {
             if (input == null) {
@@ -123,7 +125,11 @@ namespace Cobilas.Unity.Management.InputManager {
             return triggers[LastIndex()];
         }
 
-        void ISerializationCallbackReceiver.OnAfterDeserialize() => AfterDeserialize = true;
+        void ISerializationCallbackReceiver.OnAfterDeserialize() {
+#if UNITY_EDITOR
+            AfterDeserialize = true;
+#endif
+        }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize() { }
 
