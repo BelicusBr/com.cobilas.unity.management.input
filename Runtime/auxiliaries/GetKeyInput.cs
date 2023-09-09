@@ -4,8 +4,9 @@ using System.Collections;
 using Cobilas.Collections;
 using Cobilas.Unity.Management.Container;
 
+
 namespace Cobilas.Unity.Management.InputManager {
-    [AddToPermanentContainer]
+    [AddSceneContainer]
     public class GetKeyInput : MonoBehaviour, ISerializationCallbackReceiver {
         [SerializeField]
         [HideInInspector]

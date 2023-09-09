@@ -1,6 +1,9 @@
 # Changelog
+## [1.4.0] - 08/09/2023
+### Changed
+- As dependencias do pacote foram aluteradas.
 ## [1.3.0] - 29/08/2023
-## Changed
+### Changed
 - As dependencias do pacote foram aluteradas.
 ## [1.2.0-ch1] - 28/08/2023
 ### Changed
