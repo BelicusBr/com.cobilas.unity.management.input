@@ -1,4 +1,13 @@
 # Changelog
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.1.1] (05/02/2024)
+- ### Changed
+- - Updated dependency `com.cobilas.unity.utility` to version `2.10.3`.
+- - Updated dependency `com.cobilas.unity.core.net4x` to version `1.4.1`.
+- - Updated dependency `com.cobilas.unity.management.runtime` to version `2.2.1`.
+- - Updated dependency `com.cobilas.unity.management.resource` to version `2.1.1`.
+- - This update includes bug fixes and new features that do not directly impact this package.
 ## [1.3.0] - 29/08/2023
 ## Changed
 - As dependencias do pacote foram aluteradas.

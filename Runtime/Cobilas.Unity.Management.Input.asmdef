@@ -1,10 +1,11 @@
 {
     "name": "Cobilas.Unity.Management.Input",
     "references": [
-        "Cobilas.Core",
+        "Cobilas.Core.Net4x",
         "Cobilas.Unity.Utility",
         "Cobilas.Unity.Management.Runtime",
-        "Cobilas.Unity.Management.Resource"
+        "Cobilas.Unity.Management.Resource",
+        "Cobilas.Unity.Management.Runtime.Build"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

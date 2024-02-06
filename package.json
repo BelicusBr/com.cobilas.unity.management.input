@@ -1,14 +1,14 @@
 {
   "name": "com.cobilas.unity.management.input",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "displayName": "Cobilas Management Input",
-  "description": "Pacote de gerenciamento de entradas para unity3d",
+  "description": "Input management package for unity3d",
   "licensesUrl": "https://github.com/BelicusBr/com.cobilas.unity.management.input/blob/main/LICENSE.md",
   "changelogUrl": "https://github.com/BelicusBr/com.cobilas.unity.management.input/blob/main/CHANGELOG.md",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "type": "tool",
-  "author": "BélicusBr",
+  "author": "B\u00e9licusBr",
   "repository": {
     "url": "git+https://github.com/BelicusBr/com.cobilas.unity.management.input.git",
     "type": "git"
@@ -19,20 +19,21 @@
   "homepage": "https://github.com/BelicusBr/com.cobilas.unity.management.input#readme",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "npm_pack": "npm pack --pack-destination C:/local.npm",
+    "npm_push": "@powershell -Command . cobilas.package.funcs.ps1 ; npm_push -package_name %npm_package_name% -package_version %npm_package_version%",
+	"npm_pack_push": "npm run npm_pack && npm run npm_push"
   },
   "keywords": [
     "unity3d",
     "unity-csharp",
-	"unitypackage",
-	"unity-input"
+    "unitypackage",
+    "unity-input"
   ],
   "license": "MIT",
   "dependencies": {
-    "com.cobilas.core": "3.0.0",
-    "com.cobilas.unity.extensions": "1.22.0",
-    "com.cobilas.unity.utility": "2.8.0",
-    "com.cobilas.unity.management.runtime": "1.15.0",
-    "com.cobilas.unity.management.resource": "1.14.0"
+    "com.cobilas.unity.core.net4x": "1.4.1",
+    "com.cobilas.unity.utility": "2.10.3",
+    "com.cobilas.unity.management.runtime": "2.2.1",
+    "com.cobilas.unity.management.resource": "2.1.1"
   }
 }

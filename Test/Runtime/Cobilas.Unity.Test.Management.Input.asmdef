@@ -1,9 +1,8 @@
 {
     "name": "Cobilas.Unity.Test.Management.Input",
     "references": [
-        "Cobilas.Core",
+        "Cobilas.Core.Net4x",
         "Cobilas.Unity.Utility",
-        "Cobilas.Unity.Extensions",
         "Cobilas.Unity.Management.Input",
         "Cobilas.Unity.Management.Runtime",
         "Cobilas.Unity.Management.Resource"

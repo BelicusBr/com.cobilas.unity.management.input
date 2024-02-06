@@ -1,8 +1,8 @@
 {
     "name": "Cobilas.Unity.Editor.Management.Input",
     "references": [
-        "Cobilas.Core",
-        "Cobilas.Unity.Editor.Extensions",
+        "Cobilas.Core.Net4x",
+        "Cobilas.Unity.Editor.Utility",
         "Cobilas.Unity.Management.Input"
     ],
     "includePlatforms": [

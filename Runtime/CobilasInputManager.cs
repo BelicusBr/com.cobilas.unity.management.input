@@ -55,7 +55,7 @@ namespace Cobilas.Unity.Management.InputManager {
         //[CRIOLM_CallWhen(typeof(CobilasResources), CRIOLMType.BeforeSceneLoad)]
         [CallWhenStart(InitializePriority.High, "#ResourceManager")]
         private static void RefreshSettings() {
-            CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
+            CobilasInputManagerSettings scriptableObject = ResourceManager.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             if (scriptableObject == null) {
                 CobilasInputManagerSettings inputManagerSettings = CobilasInputManagerSettings.GetCobilasInputManagerSettings();
                 string dirPath = UnityPath.Combine(UnityPath.AssetsPath, "Resources/Inputs");
@@ -101,7 +101,7 @@ namespace Cobilas.Unity.Management.InputManager {
         [StartBeforeSceneLoad(InitializePriority.Low)]
 #endif
         private static void Init() {
-            CobilasInputManagerSettings scriptableObject = CobilasResources.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
+            CobilasInputManagerSettings scriptableObject = ResourceManager.GetScriptableObject<CobilasInputManagerSettings>("cim_settings");
             useMultipleKeys = scriptableObject.UseMultipleKeys;
             useSecondaryCommandKeys = scriptableObject.UseSecondaryCommandKeys;
             ResetInputs();
@@ -115,8 +115,8 @@ namespace Cobilas.Unity.Management.InputManager {
 
         public static void ResetInputs() {
             ArrayManipulation.ClearArraySafe<InputCapsule>(ref inputCapsules);
-            inputCapsules = CobilasResources.GetAllSpecificObjectInFolder<InputCapsule>("Resources/Inputs");
-            InputCapsuleCollection[] collection = CobilasResources.GetAllSpecificObjectInFolder<InputCapsuleCollection>("Resources/Inputs");
+            inputCapsules = ResourceManager.GetAllSpecificObjectInFolder<InputCapsule>("Resources/Inputs");
+            InputCapsuleCollection[] collection = ResourceManager.GetAllSpecificObjectInFolder<InputCapsuleCollection>("Resources/Inputs");
 
             for (int I = 0; I < ArrayManipulation.ArrayLength(collection); I++)
                 ArrayManipulation.Add(collection[I].Capsules, ref inputCapsules);

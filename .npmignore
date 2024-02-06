@@ -1,0 +1,14 @@
+.libs/
+bin/
+obj/
+Test/
+obj.meta
+Test.meta
+*.csproj
+*.csproj.meta
+*.sln
+*.sln.meta
+*.tgz
+*.tgz.meta
+*.ps1
+*.ps1.meta
